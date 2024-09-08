@@ -10,7 +10,7 @@ var square4 = square(4);
 
 /*  # Execution Context:
 
-Execution Context is like a container which holds information related to the current state of code being executed. 
+EXECUTION CONTEXT is like a container which holds information related to the current state of code being executed. 
 
 It means that all the variables , functions and other parameters which is being used currently in the code is stored in a container called as execution context.
 
@@ -38,5 +38,7 @@ Two phases of Executioon context:
 
 - When a function is invoked, a new local execution context is created which has its own components.
 
-- When a function returns a value, the execution context is deleted and value is assigned to a variable removing the value undefined. 
+- When a function returns a value, the execution context is deleted and value is assigned to a variable removing the value undefined.
+
+- JavaScript manages these functions through the CALL STACK. THhe call stack is a mechanism in JavaScript through which it keeps otrack of function calls and helps computer remember which function is currently getting executed and where it willl return after it is executed.  
 */
