@@ -9,6 +9,14 @@ function getName(){
 }
 
 
+var getName = () =>{
+    console.log("JavaScript!!");
+}
+
+var getName = function () {
+    console.log("JavaScript!!");
+}
+
 
 /*  # Hoisting 
 HOISTING is a behaviour in JavaScript in which the variable and function declarations are relocated to the top of the code blocks no matter where they are declared in the code. 
@@ -27,5 +35,9 @@ PRACTICAL IMPLEMENTATION OF HOISTING
 - So, when we access the variable/function before declaring it, it will show undefined for the variable and function body for the function. 
 - happens due to memory creation phase in the execution context.
 
+
+TRADITIONAL / ARROW FUNCTION :
+- getName in the arrow function is the variable and undefined will be assigned to it if accessed before declaration.
+- Similarly, in the nameless function expression also , getName is a variable to which the function is assigned.
 
 */
