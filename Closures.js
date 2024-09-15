@@ -65,6 +65,7 @@ It remembers the reference of 'a', and when z() invokes, 100 is present in the m
 
 //OUTPUT QUESTIONS
 
+//1. 
 function x(){
     // var a=7;
     function y(){
@@ -78,6 +79,7 @@ x()();
 // y() will still form a closure with variable a as 'a' is still in the outer lexical scope of y(). It does not matter in which sequence it is written.
 
 
+//2.
 function x(){
     // var a=7;
     function y(){
@@ -90,3 +92,19 @@ function x(){
 x()();
 
 // y() will still form a closure with variable 'b' even if it is declared with LET keyword. let has a block scope.
+
+
+//3.
+function x(b){
+
+    function y(){
+        console.log(a , b); // REFERENCE of 'a'
+    }
+
+    let a = 10;
+    return y;
+}
+var z = x("hello");
+z();
+
+// Closure is formed by a function with its immediate outer lexical scope. Scope includes all the variables and even the parameters included. Hence, y() will form a closure with paramter 'b'. 
