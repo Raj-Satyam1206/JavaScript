@@ -80,7 +80,7 @@ Callback Queue contains every other callback functions.
 /* 
 
 Q. Why do we need a callback queue?
-A. The Event loop cannot directly take the callback function from   the Web API environment.
+A. The Event loop cannot directly take the callback function from the Web API environment.
     Suppose there are multiple callback functions, so there needs to be an order in which they are executed.
  */
 
