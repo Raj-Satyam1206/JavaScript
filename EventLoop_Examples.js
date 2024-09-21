@@ -26,7 +26,7 @@ Global Execution Context is created and pushed into the call stack.
     JS calls the console Web API so that we log "End" onto the console.
 
 
-Now, When the GEC is popped off the call stack is empty , then the callback functions will be moved to the call stack and the event loop will push it one by one into the call stack for execution.    
+Now, When the GEC is popped off the call stack is empty , then the callback functions will be moved to the callback queue and the event loop will push it one by one into the call stack for execution.    
 */
 
 
