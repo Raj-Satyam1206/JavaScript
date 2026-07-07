@@ -56,9 +56,9 @@
 
       const throttle = (func, limit) => {
         let flag = true;
-        return function () {
+        return function (...args) {
           if (flag) {
-            func();
+            func.apply(this, args);
             flag = false;
           }
           setTimeout(() => {
