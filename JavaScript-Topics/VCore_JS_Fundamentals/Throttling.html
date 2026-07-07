@@ -1,0 +1,96 @@
+<!-- 
+    THROTTLING
+
+- Throttling limits the frequency at which a function is executed.
+- Reduces no. of API calls and increases Performance 
+
+ For Example::
+- If there are multiple clicks on a button which in turn executes a function, then there will be a lot of function calls and it hampers the performance of the web app.
+- By Throttling, we execute the function only after a specified timer limit.
+- So, function is not executed at every click of button, but at specific intervals
+- At first instance, the function is executed and then it takes a timer limit and then it executes again  
+-->
+
+<!-- WITHOUT THROTTLING -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button id="nothrottle">Click Me</button>
+
+    <script>
+      // Selected button with the given id
+      const btn = document.querySelector("#nothrottle");
+
+      // Add event listener to the button
+      // to listen the click event
+      btn.addEventListener("click", () => {
+        console.log("button is clicked");
+      });
+    </script>
+  </body>
+</html>
+
+<!-- WITH THROTTLING -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button id="nothrottle">Click Me</button>
+
+    <script>
+      // Selected button with the given id
+      const button = document.querySelector("#nothrottle");
+
+      const throttle = (func, limit) => {
+        let flag = true;
+        return function () {
+          if (flag) {
+            func();
+            flag = false;
+          }
+          setTimeout(() => {
+            flag = true;
+          }, limit);
+        };
+      };
+
+      button.addEventListener(
+        "click",
+        throttle(() => {
+          console.log("button is clicked");
+        }, 1500),
+      );
+    </script>
+  </body>
+</html>
+
+<!-- 
+Control with a Flag Variable: A flag variable is introduced to regulate the execution of the function, ensuring it only executes when the flag is set to true.
+
+Closure with the Flag: The function forms a closure around the flag variable, allowing it to retain its state across multiple invocations.
+
+Initial State Execution: Initially, the flag is set to true, allowing the function to execute on its first invocation.
+
+Temporary Block After Execution: Once the function executes, the flag is set to false, temporarily preventing further executions until a specified delay timer completes.
+
+Reactivation Using a Timer: A setTimeout mechanism resets the flag to true after the specified delay, enabling the function to execute again. This process continues in a cyclical manner, creating a throttled execution pattern
+-->
+
+export default function throttle(func, wait) { let flag = true; let timer =
+null; function throttled(...args){ let context = this; if(flag){
+func.apply(context , args); flag=false; } timer = setTimeout(()=>{ flag=true;
+},wait); } throttled.cancel = function(){ if (timer) clearTimeout(timer); timer
+= null; context = null; } return throttled; }

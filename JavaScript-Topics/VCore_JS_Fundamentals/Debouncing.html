@@ -1,0 +1,92 @@
+<!-- 
+    DEBOUNCING 
+
+- Debouncing is a technique in programming that improves the
+performance of web applications by controlling the frequency at which
+time-consuming tasks(Network calls / API calls) are triggered. 
+
+- In JavaScript, debouncing is commonly used to enhance browser performance by ensuring that
+expensive operations (like complex calculations, API calls, or DOM updates) are
+executed only when necessary. 
+
+- Reduces the number of times a function needs to be called. 
+- Improves Performance of the web application 
+-->
+
+<!--
+For Example:: -
+While searching for an item in an E-Comm App , we don't want to make a separate
+network call for each key press. 
+- Here , Debouncing comes into picture. 
+- With debouncing , we make a network call only if a specified delay happens while
+pressing the key. (setTimeout()) 
+- If the key is pressed continuously before the delay time ends, then debounce function will be executed from start again and the initial delay is canceled using clearTimeout()
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debounce</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+
+    <script>
+      let input = document.getElementById("input");
+
+      const getData = function () {
+        // calls an API and gets the data
+        console.log("Fetching Data");
+      };
+
+      const debounce = (func, delay) => {
+        let timer;
+
+        return function (...args) {
+          clearTimeout(timer);
+
+          timer = setTimeout(() => {
+            func.apply(this, args);
+          }, delay);
+        };
+      };
+
+      <!-- input.addEventListener("keyup" , getData());
+      //this will make API call at each key press
+      -->
+
+      input.addEventListener("keyup", debounce(getData, 300));
+      // Everytime the key is pressed, debounce function is called and if there is delay of 300ms then API call is made.
+      //this will make API call only after 300ms of key press
+    </script>
+  </body>
+</html>
+
+<!-- 
+const debounce = (func, delay)
+Debounce function takes two arguments and makes sure the func() is not executed unnecessarily (complex operation) and it should only be executed if the specified delay happens b/w two key presses or two clicks.
+If another key is pressed before this delay, then the delay is cleared .  
+
+
+https://chatgpt.com/c/6a33e0a8-4fa0-83e8-945d-99cdd26d045b
+-->
+
+<!--
+
+New way of writing debounce function
+
+
+const debounce = (func, delay) => {
+  let timer;
+
+  return function (...args) {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+};
+-->
